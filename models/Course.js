@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const courseSchema = new mongoose.Schema(
   {
@@ -12,24 +12,24 @@ const courseSchema = new mongoose.Schema(
     },
     instructor: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Instructor",
+      ref: 'Instructor',
       required: true,
     },
     students: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Student",
+        ref: 'Student',
       },
     ],
     rooms: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Room",
+      ref: 'Room',
       required: true,
     },
   },
   {
     timestamps: true,
-  }
+  },
 );
-const Course = mongoose.model("Course", courseSchema);
+const Course = mongoose.model('Course', courseSchema);
 module.exports = Course;
