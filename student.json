@@ -1,0 +1,45 @@
+[
+  {
+    "name": "Jane",
+    "lastName": "Doe",
+    "gender": "female",
+    "dateOfBirth": "2000-05-15T00:00:00.000Z",
+    "email": "jane.doe@example.com",
+    "password": "securehashedpassword",
+    "profilePicture": "https://example.com/profiles/janedoe.jpg",
+    "courses": ["664b8df7254bd4e3f9a7f9b34"],
+    "clubs": ["664b8df7254bd4e3f9a7f9b35"],
+    "phoneNumber": "123-456-7890",
+    "createdAt": "2025-06-04T20:37:36.240590",
+    "updatedAt": "2025-06-04T20:37:36.240593"
+    
+  },
+  {
+    "name": "John",
+    "lastName": "Smith",
+    "gender": "male",
+    "dateOfBirth": "1999-09-22T00:00:00.000Z",
+    "email": "john.smith@example.com",
+    "password": "anothersecurepassword",
+    "profilePicture": "https://example.com/profiles/johnsmith.jpg",
+    "courses": [],
+    "clubs": [],
+    "phoneNumber": "987-654-3210",
+    "createdAt": "2025-06-04T20:37:36.240590",
+    "updatedAt": "2025-06-04T20:37:36.240593"
+  },
+  {
+    "name": "Emily",
+    "lastName": "Taylor",
+    "gender": "female",
+    "dateOfBirth": "2001-03-10T00:00:00.000Z",
+    "email": "emily.taylor@example.com",
+    "password": "emilypass123",
+    "profilePicture": "https://example.com/profiles/emilyt.jpg",
+    "courses": ["664b8df7254bd4e3f9a7f9b34"],
+    "clubs": ["664b8df7254bd4e3f9a7f9b35"],
+    "phoneNumber": "456-789-1230",
+    "createdAt": "2025-06-04T20:37:36.240590",
+    "updatedAt": "2025-06-04T20:37:36.240593"
+  }
+]

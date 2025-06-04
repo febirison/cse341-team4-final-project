@@ -1,4 +1,4 @@
-node_modules/
+node_modules
 .env
 MONGODB_URI=mongodb://localhost:27017/test
 GITHUB_CLIENT_ID=dummy_id

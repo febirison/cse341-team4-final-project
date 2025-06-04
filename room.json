@@ -1,0 +1,26 @@
+[
+  {
+    "buildingName": "Engineering Hall",
+    "roomNumber": "E101",
+    "capacity": 40,
+    "students": ["664b8df7254bd4e3f9a7f9b31"],
+    "createdAt": "2025-06-04T20:37:36.240482",
+    "updatedAt": "2025-06-04T20:37:36.240486"
+  },
+  {
+    "buildingName": "Main Library",
+    "roomNumber": "L202",
+    "capacity": 25,
+    "students": [],
+    "createdAt": "2025-06-04T20:37:36.240482",
+    "updatedAt": "2025-06-04T20:37:36.240486"
+  },
+  {
+    "buildingName": "Science Center",
+    "roomNumber": "S303",
+    "capacity": 50,
+    "students": ["664b8df7254bd4e3f9a7f9b32", "664b8df7254bd4e3f9a7f9b36"],
+    "createdAt": "2025-06-04T20:37:36.240482",
+    "updatedAt": "2025-06-04T20:37:36.240486"
+  }
+]

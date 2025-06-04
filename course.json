@@ -1,0 +1,29 @@
+[
+  {
+    "title": "Intro to Programming",
+    "description": "Learn JavaScript fundamentals",
+    "instructor": "664b8df7254bd4e3f9a7f9b30",
+    "students": ["664b8df7254bd4e3f9a7f9b31", "664b8df7254bd4e3f9a7f9b32"],
+    "rooms": "664b8df7254bd4e3f9a7f9b33",
+    "createdAt": "2025-06-04T20:37:36.240309",
+    "updatedAt": "2025-06-04T20:37:36.240319"
+  },
+  {
+    "title": "Web Development Basics",
+    "description": "HTML, CSS, and intro to web frameworks",
+    "instructor": "664b8df7254bd4e3f9a7f9b34",
+    "students": ["664b8df7254bd4e3f9a7f9b31"],
+    "rooms": "664b8df7254bd4e3f9a7f9b34",
+    "createdAt": "2025-06-04T20:37:36.240309",
+    "updatedAt": "2025-06-04T20:37:36.240319"
+  },
+  {
+    "title": "Data Structures",
+    "description": "In-depth study of algorithms and data handling",
+    "instructor": "664b8df7254bd4e3f9a7f9b35",
+    "students": [],
+    "rooms": "664b8df7254bd4e3f9a7f9b35",
+    "createdAt": "2025-06-04T20:37:36.240309",
+    "updatedAt": "2025-06-04T20:37:36.240319"
+  }
+]
