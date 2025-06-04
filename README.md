@@ -8,6 +8,7 @@ A backend API for managing campus activities, built for CSE341 Final Project.
 - Erwin Jared Larios
 - Amornrat Dizon Howard
 - David da Rocha Fernandes
+- Ivan Sembatya
 
 ## Features
 - Join clubs
