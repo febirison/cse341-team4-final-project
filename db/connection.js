@@ -3,7 +3,8 @@ const dotenv = require('dotenv');
 
 dotenv.config(); // Load info from .env
 
-const url = process.env.MONGODB_URI; // Your MongoDB URL
+const url = process.env.MONGO_URI; 
+
 
 async function connectToDb() {
   try {
