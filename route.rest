@@ -1,0 +1,47 @@
+### Get all 
+GET http://localhost:3000/student
+
+### Get Student by ID
+GET http://localhost:3000/student/6840ff06e9f087bc845a92bd
+
+
+### Add new Student
+POST http://localhost:3000/student HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Ada",
+    "lastName": "Johnson",
+    "gender": "female",
+    "dateOfBirth": "2000-05-14T00:00:00.000Z",
+    "email": "ada.johnson@example.com",
+    "password": "hashedpassword9",
+    "githubId": "adaGithub",
+    "profilePicture": "https://example.com/images/ada.jpg",
+    "courses": [],
+    "clubs": [],
+    "phoneNumber": "123-456-0000",
+    "updatedAt": "2025-06-05T04:43:58.840Z"
+  }
+
+### PUT - Update Student by ID
+PUT http://localhost:3000/student/6840ff06e9f087bc845a92bd
+Content-Type: application/json
+
+{
+    "name": "",
+    "lastName": "Johnson",
+    "gender": "female",
+    "dateOfBirth": "2026-05-14",
+    "email": "alice.johnson@example.com",
+    "password": "hashedpassword1",
+    "githubId": "aliceGithub",
+    "profilePicture": "https://example.com/images/alice.jpg",
+    "courses": [],
+    "clubs": [],
+    "phoneNumber": "123-456-7890",
+    "updatedAt": "2025-06-05T04:43:58.840Z"
+  }
+
+### DELETE - Delete a student by ID
+DELETE http://localhost:3000/Student/682ef2ce4b1fcade62d8e4e3

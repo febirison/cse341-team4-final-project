@@ -1,29 +1,22 @@
 [
   {
-    "name": "Tech Enthusiasts",
-    "description": "A club for students passionate about new technologies, coding, and hackathons.",
-    "members": ["664b8df7254bd4e3f9a7f9b31", "664b8df7254bd4e3f9a7f9b32"],
-    "meetingStartTime": "2025-06-10T17:00:00.000Z",
-    "meetingEndTime": "2025-06-10T19:00:00.000Z",
-    "createdAt": "2025-06-04T21:00:00.000Z",
-    "updatedAt": "2025-06-04T21:00:00.000Z"
+    "name": "Robotics Club",
+    "description": "Building and programming robots.",
+    "members": [],
+    "meetingStartTime": "2025-06-10T15:00:00.000Z",
+    "meetingEndTime": "2025-06-10T17:00:00.000Z"
   },
   {
-    "name": "Literature Circle",
-    "description": "Group of students discussing classic and contemporary literature every week.",
-    "members": ["664b8df7254bd4e3f9a7f9b32", "664b8df7254bd4e3f9a7f9b36"],
-    "meetingStartTime": "2025-06-12T15:30:00.000Z",
-    "meetingEndTime": "2025-06-12T17:00:00.000Z",
-    "createdAt": "2025-06-04T21:00:00.000Z",
-    "updatedAt": "2025-06-04T21:00:00.000Z"
+    "name": "Chess Club",
+    "description": "Weekly chess matches and training.",
+    "members": [],
+    "meetingStartTime": "2025-06-11T16:00:00.000Z",
+    "meetingEndTime": "2025-06-11T18:00:00.000Z"
   },
   {
-    "name": "Photography Club",
-    "description": "For students interested in photography, editing, and photo walks around campus.",
-    "members": ["664b8df7254bd4e3f9a7f9b31", "664b8df7254bd4e3f9a7f9b36"],
-    "meetingStartTime": "2025-06-14T13:00:00.000Z",
-    "meetingEndTime": "2025-06-14T15:00:00.000Z",
-    "createdAt": "2025-06-04T21:00:00.000Z",
-    "updatedAt": "2025-06-04T21:00:00.000Z"
-  }
+    "name": "Art Club",
+    "description": "Painting, drawing, and sculpture.",
+    "members": [],
+    "meetingStartTime": "2025-06-12T14:30:00.000Z",
+    "meetingEndTime": "2025-06-12T16:30:00.000Z"
 ]

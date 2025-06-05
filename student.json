@@ -1,45 +1,41 @@
 [
   {
-    "name": "Jane",
-    "lastName": "Doe",
+    "name": "Alice",
+    "lastName": "Johnson",
     "gender": "female",
-    "dateOfBirth": "2000-05-15T00:00:00.000Z",
-    "email": "jane.doe@example.com",
-    "password": "securehashedpassword",
-    "profilePicture": "https://example.com/profiles/janedoe.jpg",
-    "courses": ["664b8df7254bd4e3f9a7f9b34"],
-    "clubs": ["664b8df7254bd4e3f9a7f9b35"],
-    "phoneNumber": "123-456-7890",
-    "createdAt": "2025-06-04T20:37:36.240590",
-    "updatedAt": "2025-06-04T20:37:36.240593"
-    
-  },
-  {
-    "name": "John",
-    "lastName": "Smith",
-    "gender": "male",
-    "dateOfBirth": "1999-09-22T00:00:00.000Z",
-    "email": "john.smith@example.com",
-    "password": "anothersecurepassword",
-    "profilePicture": "https://example.com/profiles/johnsmith.jpg",
+    "dateOfBirth": "2008-05-14T00:00:00.000Z",
+    "email": "alice.johnson@example.com",
+    "password": "hashedpassword1",
+    "githubId": "aliceGithub",
+    "profilePicture": "https://example.com/images/alice.jpg",
     "courses": [],
     "clubs": [],
-    "phoneNumber": "987-654-3210",
-    "createdAt": "2025-06-04T20:37:36.240590",
-    "updatedAt": "2025-06-04T20:37:36.240593"
+    "phoneNumber": "123-456-7890"
   },
   {
-    "name": "Emily",
-    "lastName": "Taylor",
-    "gender": "female",
-    "dateOfBirth": "2001-03-10T00:00:00.000Z",
-    "email": "emily.taylor@example.com",
-    "password": "emilypass123",
-    "profilePicture": "https://example.com/profiles/emilyt.jpg",
-    "courses": ["664b8df7254bd4e3f9a7f9b34"],
-    "clubs": ["664b8df7254bd4e3f9a7f9b35"],
-    "phoneNumber": "456-789-1230",
-    "createdAt": "2025-06-04T20:37:36.240590",
-    "updatedAt": "2025-06-04T20:37:36.240593"
+    "name": "Bob",
+    "lastName": "Smith",
+    "gender": "male",
+    "dateOfBirth": "2007-11-23T00:00:00.000Z",
+    "email": "bob.smith@example.com",
+    "password": "hashedpassword2",
+    "githubId": "bobGithub",
+    "profilePicture": "https://example.com/images/bob.jpg",
+    "courses": [],
+    "clubs": [],
+    "phoneNumber": "234-567-8901"
+  },
+  {
+    "name": "Charlie",
+    "lastName": "Lee",
+    "gender": "other",
+    "dateOfBirth": "2006-03-02T00:00:00.000Z",
+    "email": "charlie.lee@example.com",
+    "password": "hashedpassword3",
+    "githubId": "charlieGithub",
+    "profilePicture": "https://example.com/images/charlie.jpg",
+    "courses": [],
+    "clubs": [],
+    "phoneNumber": "345-678-9012"
   }
 ]

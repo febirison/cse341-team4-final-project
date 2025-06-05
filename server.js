@@ -3,6 +3,7 @@ const express = require('express');
 const { connectToDb } = require('./db/connection');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
+const campusRoutes = require('./routes');
 
 const studentRoutes = require('./routes/students');
 const courseRoutes = require('./routes/courses');
@@ -12,6 +13,13 @@ const roomRoutes = require('./routes/rooms');
 const app = express();
 
 app.use(express.json());
+// Middleware to catch JSON parse error
+app.use((err, req, res, next) => {
+  if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
+    return res.status(400).json({ error: 'Invalid JSON format' });
+  }
+  next(err);
+});
 
 /* ***********************
  * Swagger route (place before the Middleware)
@@ -29,8 +37,15 @@ app.use((req, res, next) => {
 /* ***********************
  * Routes
  *************************/
-app.get('/', (req, res) => {
-  res.json({ message: 'Campus Coordinator API is running!' });
+app.use('/', campusRoutes);
+
+// Global Error Handler - JSON only
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(err.status || 500).json({
+    error: err.message || 'Internal Server Error',
+  });
 });
 
 app.use('/students', studentRoutes);
