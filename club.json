@@ -1,29 +1,23 @@
 [
   {
-    "title": "Intro to Programming",
-    "description": "Learn JavaScript fundamentals",
-    "instructor": "664b8df7254bd4e3f9a7f9b30",
-    "students": ["664b8df7254bd4e3f9a7f9b31", "664b8df7254bd4e3f9a7f9b32"],
-    "rooms": "664b8df7254bd4e3f9a7f9b33",
-    "createdAt": "2025-06-04T20:37:36.240309",
-    "updatedAt": "2025-06-04T20:37:36.240319"
+    "name": "Robotics Club",
+    "description": "Building and programming robots.",
+    "members": [],
+    "meetingStartTime": "2025-06-10T15:00:00.000Z",
+    "meetingEndTime": "2025-06-10T17:00:00.000Z"
   },
   {
-    "title": "Web Development Basics",
-    "description": "HTML, CSS, and intro to web frameworks",
-    "instructor": "664b8df7254bd4e3f9a7f9b34",
-    "students": ["664b8df7254bd4e3f9a7f9b31"],
-    "rooms": "664b8df7254bd4e3f9a7f9b34",
-    "createdAt": "2025-06-04T20:37:36.240309",
-    "updatedAt": "2025-06-04T20:37:36.240319"
+    "name": "Chess Club",
+    "description": "Weekly chess matches and training.",
+    "members": [],
+    "meetingStartTime": "2025-06-11T16:00:00.000Z",
+    "meetingEndTime": "2025-06-11T18:00:00.000Z"
   },
   {
-    "title": "Data Structures",
-    "description": "In-depth study of algorithms and data handling",
-    "instructor": "664b8df7254bd4e3f9a7f9b35",
-    "students": [],
-    "rooms": "664b8df7254bd4e3f9a7f9b35",
-    "createdAt": "2025-06-04T20:37:36.240309",
-    "updatedAt": "2025-06-04T20:37:36.240319"
+    "name": "Art Club",
+    "description": "Painting, drawing, and sculpture.",
+    "members": [],
+    "meetingStartTime": "2025-06-12T14:30:00.000Z",
+    "meetingEndTime": "2025-06-12T16:30:00.000Z"
   }
 ]
