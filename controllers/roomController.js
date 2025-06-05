@@ -6,20 +6,27 @@ const getAllRooms = async (req, res) => {
     const rooms = await Room.find().populate('students', 'name email');
     res.status(200).json(rooms);
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching rooms', error: error.message });
+    res
+      .status(500)
+      .json({ message: 'Error fetching rooms', error: error.message });
   }
 };
 
 // Get a single room by ID
 const getRoomById = async (req, res) => {
   try {
-    const room = await Room.findById(req.params.id).populate('students', 'name email');
+    const room = await Room.findById(req.params.id).populate(
+      'students',
+      'name email',
+    );
     if (!room) {
       return res.status(404).json({ message: 'Room not found' });
     }
     res.status(200).json(room);
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching room', error: error.message });
+    res
+      .status(500)
+      .json({ message: 'Error fetching room', error: error.message });
   }
 };
 
@@ -30,7 +37,9 @@ const createRoom = async (req, res) => {
     await room.save();
     res.status(201).json(room);
   } catch (error) {
-    res.status(400).json({ message: 'Invalid room data', error: error.message });
+    res
+      .status(400)
+      .json({ message: 'Invalid room data', error: error.message });
   }
 };
 
@@ -46,7 +55,9 @@ const updateRoom = async (req, res) => {
     }
     res.status(200).json(room);
   } catch (error) {
-    res.status(400).json({ message: 'Error updating room', error: error.message });
+    res
+      .status(400)
+      .json({ message: 'Error updating room', error: error.message });
   }
 };
 
@@ -59,7 +70,9 @@ const deleteRoom = async (req, res) => {
     }
     res.status(200).json({ message: 'Room deleted successfully' });
   } catch (error) {
-    res.status(500).json({ message: 'Error deleting room', error: error.message });
+    res
+      .status(500)
+      .json({ message: 'Error deleting room', error: error.message });
   }
 };
 

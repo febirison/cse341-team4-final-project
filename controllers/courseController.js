@@ -6,7 +6,9 @@ const getAllCourses = async (req, res) => {
     const courses = await Course.find();
     res.status(200).json(courses);
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching courses', error: error.message });
+    res
+      .status(500)
+      .json({ message: 'Error fetching courses', error: error.message });
   }
 };
 
@@ -19,7 +21,9 @@ const getCourseById = async (req, res) => {
     }
     res.status(200).json(course);
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching course', error: error.message });
+    res
+      .status(500)
+      .json({ message: 'Error fetching course', error: error.message });
   }
 };
 
@@ -30,7 +34,9 @@ const createCourse = async (req, res) => {
     await course.save();
     res.status(201).json(course);
   } catch (error) {
-    res.status(400).json({ message: 'Invalid course data', error: error.message });
+    res
+      .status(400)
+      .json({ message: 'Invalid course data', error: error.message });
   }
 };
 
@@ -46,7 +52,9 @@ const updateCourse = async (req, res) => {
     }
     res.status(200).json(course);
   } catch (error) {
-    res.status(400).json({ message: 'Error updating course', error: error.message });
+    res
+      .status(400)
+      .json({ message: 'Error updating course', error: error.message });
   }
 };
 
@@ -59,7 +67,9 @@ const deleteCourse = async (req, res) => {
     }
     res.status(200).json({ message: 'Course deleted successfully' });
   } catch (error) {
-    res.status(500).json({ message: 'Error deleting course', error: error.message });
+    res
+      .status(500)
+      .json({ message: 'Error deleting course', error: error.message });
   }
 };
 

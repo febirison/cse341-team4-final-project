@@ -6,7 +6,9 @@ const getAllStudents = async (req, res) => {
     const students = await Student.find();
     res.status(200).json(students);
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching students', error: error.message });
+    res
+      .status(500)
+      .json({ message: 'Error fetching students', error: error.message });
   }
 };
 
@@ -19,7 +21,9 @@ const getStudentById = async (req, res) => {
     }
     res.status(200).json(student);
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching student', error: error.message });
+    res
+      .status(500)
+      .json({ message: 'Error fetching student', error: error.message });
   }
 };
 
@@ -30,7 +34,9 @@ const createStudent = async (req, res) => {
     await student.save();
     res.status(201).json(student);
   } catch (error) {
-    res.status(400).json({ message: 'Invalid student data', error: error.message });
+    res
+      .status(400)
+      .json({ message: 'Invalid student data', error: error.message });
   }
 };
 
@@ -46,7 +52,9 @@ const updateStudent = async (req, res) => {
     }
     res.status(200).json(student);
   } catch (error) {
-    res.status(400).json({ message: 'Error updating student', error: error.message });
+    res
+      .status(400)
+      .json({ message: 'Error updating student', error: error.message });
   }
 };
 
@@ -59,7 +67,9 @@ const deleteStudent = async (req, res) => {
     }
     res.status(200).json({ message: 'Student deleted successfully' });
   } catch (error) {
-    res.status(500).json({ message: 'Error deleting student', error: error.message });
+    res
+      .status(500)
+      .json({ message: 'Error deleting student', error: error.message });
   }
 };
 
