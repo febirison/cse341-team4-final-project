@@ -5,11 +5,6 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
 const campusRoutes = require('./routes');
 
-const studentRoutes = require('./routes/students');
-const courseRoutes = require('./routes/courses');
-const clubRoutes = require('./routes/clubs');
-const roomRoutes = require('./routes/rooms');
-
 const app = express();
 
 app.use(express.json());
@@ -47,11 +42,6 @@ app.use((err, req, res, next) => {
     error: err.message || 'Internal Server Error',
   });
 });
-
-app.use('/students', studentRoutes);
-app.use('/courses', courseRoutes);
-app.use('/clubs', clubRoutes);
-app.use('/rooms', roomRoutes);
 
 /* ***********************
  * Server
