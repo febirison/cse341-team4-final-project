@@ -1,6 +1,7 @@
 const express = require('express');
+
 const router = express.Router();
-const courseController = require('../controllers/courseController');
+//const courseController = require('../controllers/courseController');
 const Course = require('../models/Course');
 
 // GET /courses - Get all courses
@@ -9,7 +10,9 @@ router.get('/', async (req, res) => {
     const courses = await Course.find();
     res.status(200).json(courses);
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching courses', error: error.message });
+    res
+      .status(500)
+      .json({ message: 'Error fetching courses', error: error.message });
   }
 });
 
@@ -22,7 +25,9 @@ router.get('/:id', async (req, res) => {
     }
     res.status(200).json(course);
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching course', error: error.message });
+    res
+      .status(500)
+      .json({ message: 'Error fetching course', error: error.message });
   }
 });
 
@@ -33,7 +38,9 @@ router.post('/', async (req, res) => {
     await course.save();
     res.status(201).json(course);
   } catch (error) {
-    res.status(400).json({ message: 'Invalid course data', error: error.message });
+    res
+      .status(400)
+      .json({ message: 'Invalid course data', error: error.message });
   }
 });
 
@@ -49,7 +56,9 @@ router.put('/:id', async (req, res) => {
     }
     res.status(200).json(course);
   } catch (error) {
-    res.status(400).json({ message: 'Error updating course', error: error.message });
+    res
+      .status(400)
+      .json({ message: 'Error updating course', error: error.message });
   }
 });
 
@@ -62,7 +71,9 @@ router.delete('/:id', async (req, res) => {
     }
     res.status(200).json({ message: 'Course deleted successfully' });
   } catch (error) {
-    res.status(500).json({ message: 'Error deleting course', error: error.message });
+    res
+      .status(500)
+      .json({ message: 'Error deleting course', error: error.message });
   }
 });
 

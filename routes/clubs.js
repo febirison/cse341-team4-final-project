@@ -1,4 +1,5 @@
 const express = require('express');
+
 const router = express.Router();
 
 const clubController = require('../controllers/clubController');
@@ -17,6 +18,5 @@ router.put('/:id', clubController.updateClub);
 
 // DELETE /clubs/:id
 router.delete('/:id', clubController.deleteClub);
-
 
 module.exports = router;
