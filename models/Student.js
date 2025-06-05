@@ -31,6 +31,10 @@ const studentSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    githubId: {
+      type: String,
+      trim: true,
+    },
     profilePicture: {
       type: String,
       trim: true,

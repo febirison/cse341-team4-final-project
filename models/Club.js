@@ -18,6 +18,14 @@ const clubSchema = new mongoose.Schema(
         ref: 'Student',
       },
     ],
+    meetingStartTime: {
+      type: Date,
+      required: true
+    },
+    meetingEndTime: {
+      type: Date,
+      required: true
+    }
   },
   {
     timestamps: true,
