@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-    "url": "http://localhost:3000"
+      "url": "http://localhost:3000"
     }
   ],
   "tags": [
@@ -103,7 +103,6 @@
         }
       }
     },
-    
     "/course": {
       "get": {
         "tags": ["Courses"],
@@ -190,7 +189,6 @@
         }
       }
     },
-  
     "/club": {
       "get": {
         "tags": ["Clubs"],
@@ -201,216 +199,362 @@
             "content": {
               "application/json": {
                 "schema": {
-                "type": "array",
-                "items": { "$ref": "#/components/schemas/Club" }
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Club" }
+                }
+              }
             }
           }
         }
-      }
-    }
-  },
-  "post": {
-    "tags": ["Clubs"],
-    "summary": "Create a club",
-    "requestBody": {
-      "required": true,
-      "content": {
-        "application/json": {
-          "schema": { "$ref": "#/components/schemas/Club" }
+      },
+      "post": {
+        "tags": ["Clubs"],
+        "summary": "Create a club",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Club" }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Club created" },
+          "500": { "description": "Internal server error" }
         }
       }
     },
-    "responses": {
-      "201": { "description": "Club created" },
-      "500": { "description": "Internal server error" }
-    }
-  }
-},
-"/club/{id}": {
-  "get": {
-    "tags": ["Clubs"],
-    "summary": "Get a club by ID",
-    "parameters": [
-      { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
-    ],
-    "responses": {
-      "200": {
-        "description": "A single club",
-        "content": {
-          "application/json": {
-            "schema": { "$ref": "#/components/schemas/Club" }
-          }
+    "/club/{id}": {
+      "get": {
+        "tags": ["Clubs"],
+        "summary": "Get a club by ID",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single club",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Club" }
+              }
+            }
+          },
+          "404": { "description": "Club not found" }
         }
       },
-      "404": { "description": "Club not found" }
-    }
-  },
-  "put": {
-    "tags": ["Clubs"],
-    "summary": "Update a club",
-    "parameters": [
-      { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
-    ],
-    "requestBody": {
-      "required": true,
-      "content": {
-        "application/json": {
-          "schema": { "$ref": "#/components/schemas/Club" }
+      "put": {
+        "tags": ["Clubs"],
+        "summary": "Update a club",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Club" }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Club updated" },
+          "400": { "description": "Bad request" },
+          "404": { "description": "Club not found" }
+        }
+      },
+      "delete": {
+        "tags": ["Clubs"],
+        "summary": "Delete a club",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "204": { "description": "Club deleted" },
+          "404": { "description": "Club not found" }
         }
       }
     },
-    "responses": {
-      "200": { "description": "Club updated" },
-      "400": { "description": "Bad request" },
-      "404": { "description": "Club not found" }
-    }
-  },
-  "delete": {
-    "tags": ["Clubs"],
-    "summary": "Delete a club",
-    "parameters": [
-      { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
-    ],
-    "responses": {
-      "204": { "description": "Club deleted" },
-      "404": { "description": "Club not found" }
-    }
-  }
-},
-"/room": {
-    "get": {
-    "tags": ["Rooms"],
-    "summary": "Get all rooms",
-    "responses": {
-      "200": {
-        "description": "List of rooms",
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "array",
-              "items": { "$ref": "#/components/schemas/Room" }
+    "/room": {
+      "get": {
+        "tags": ["Rooms"],
+        "summary": "Get all rooms",
+        "responses": {
+          "200": {
+            "description": "List of rooms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Room" }
+                }
+              }
             }
           }
         }
-      }
-    }
-  },
-  "post": {
-    "tags": ["Rooms"],
-    "summary": "Create a room",
-    "requestBody": {
-      "required": true,
-      "content": {
-        "application/json": {
-          "schema": { "$ref": "#/components/schemas/Room" }
+      },
+      "post": {
+        "tags": ["Rooms"],
+        "summary": "Create a room",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Room" }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Room created" },
+          "500": { "description": "Internal server error" }
         }
       }
     },
-    "responses": {
-      "201": { "description": "Room created" },
-      "500": { "description": "Internal server error" }
-    }
-  }
-},
-"/room/{id}": {
-  "get": {
-    "tags": ["Rooms"],
-    "summary": "Get a room by ID",
-    "parameters": [
-      { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
-    ],
-    "responses": {
-      "200": {
-        "description": "A single room",
-        "content": {
-          "application/json": {
-            "schema": { "$ref": "#/components/schemas/Room" }
-          }
+    "/room/{id}": {
+      "get": {
+        "tags": ["Rooms"],
+        "summary": "Get a room by ID",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single room",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Room" }
+              }
+            }
+          },
+          "404": { "description": "Room not found" }
         }
       },
-      "404": { "description": "Room not found" }
-    }
-  },
-  "put": {
-    "tags": ["Rooms"],
-    "summary": "Update a room",
-    "parameters": [
-      { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
-    ],
-    "requestBody": {
-      "required": true,
-      "content": {
-        "application/json": {
-          "schema": { "$ref": "#/components/schemas/Room" }
+      "put": {
+        "tags": ["Rooms"],
+        "summary": "Update a room",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Room" }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Room updated" },
+          "400": { "description": "Bad request" },
+          "404": { "description": "Room not found" }
+        }
+      },
+      "delete": {
+        "tags": ["Rooms"],
+        "summary": "Delete a room",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "204": { "description": "Room deleted" },
+          "404": { "description": "Room not found" }
         }
       }
-    },
-    "responses": {
-      "200": { "description": "Room updated" },
-      "400": { "description": "Bad request" },
-      "404": { "description": "Room not found" }
     }
   },
-  "delete": {
-    "tags": ["Rooms"],
-    "summary": "Delete a room",
-    "parameters": [
-      { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
-    ],
-    "responses": {
-      "204": { "description": "Room deleted" },
-      "404": { "description": "Room not found" }
-    }
-  }
-}
-},
+
   "components": {
     "schemas": {
       "Student": {
         "type": "object",
         "properties": {
-          "name": { "type": "string" },
-          "lastName": { "type": "string" },
-          "gender": { "type": "string" },
-          "dateOfBirth": { "type": "string", "format": "date" },
-          "email": { "type": "string" },
-          "password": { "type": "string" },
-          "profilePicture": { "type": "string" },
-          "courses": { "type": "array", "items": { "type": "string" } },
-          "clubs": { "type": "array", "items": { "type": "string" } },
-          "phoneNumber": { "type": "string" }
-        }
+          "name": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "string",
+            "enum": [
+              "male",
+              "female",
+              "other"
+            ]
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "githubId": {
+            "type": "string"
+          },
+          "profilePicture": {
+            "type": "string"
+          },
+          "courses": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          "clubs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          "phoneNumber": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "name",
+          "lastName",
+          "gender",
+          "dateOfBirth",
+          "email",
+          "password"
+        ]
       },
       "Course": {
         "type": "object",
         "properties": {
-          "title": { "type": "string" },
-          "description": { "type": "string" },
-          "instructor": { "type": "string" },
-          "students": { "type": "array", "items": { "type": "string" } },
-          "rooms": { "type": "string" }
-        }
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "instructor": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "students": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          "rooms": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "title",
+          "description",
+          "instructor",
+          "rooms"
+        ]
       },
       "Club": {
         "type": "object",
-        "required": ["name", "description"],
         "properties": {
-          "name": { "type": "string" },
-          "description": { "type": "string" },
-          "members": { "type": "array", "items": { "type": "string" } }
-        }
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "members": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          "meetingStartTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "meetingEndTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "name",
+          "description",
+          "meetingStartTime",
+          "meetingEndTime"
+        ]
       },
       "Room": {
         "type": "object",
-        "required": ["buildingName", "roomNumber", "capacity"],
         "properties": {
-          "buildingName": { "type": "string" },
-          "roomNumber": { "type": "string" },
-          "capacity": { "type": "integer" },
-          "students": { "type": "array", "items": { "type": "string" } }
-        }
+          "buildingName": {
+            "type": "string"
+          },
+          "roomNumber": {
+            "type": "string"
+          },
+          "capacity": {
+            "type": "integer"
+          },
+          "students": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "buildingName",
+          "roomNumber",
+          "capacity"
+        ]
       }
     }
   }
 }
-

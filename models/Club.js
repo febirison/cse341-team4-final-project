@@ -20,12 +20,12 @@ const clubSchema = new mongoose.Schema(
     ],
     meetingStartTime: {
       type: Date,
-      required: true
+      required: true,
     },
     meetingEndTime: {
       type: Date,
-      required: true
-    }
+      required: true,
+    },
   },
   {
     timestamps: true,
