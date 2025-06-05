@@ -5,11 +5,9 @@
     "description": "This is an API server for the Campus Coordinator API project",
     "version": "1.0.0"
   },
-  "servers": [
-    {
-      "url": "http://localhost:3000"
-    }
-  ],
+  "host": "cse341-team4-final-project.onrender.com ",
+  "basePath": "/",
+  "schemes": ["https"],
   "tags": [
     {
       "name": "Students",
