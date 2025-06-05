@@ -1,29 +1,29 @@
 [
   {
-    "title": "Intro to Programming",
-    "description": "Learn JavaScript fundamentals",
-    "instructor": "664b8df7254bd4e3f9a7f9b30",
-    "students": ["664b8df7254bd4e3f9a7f9b31", "664b8df7254bd4e3f9a7f9b32"],
-    "rooms": "664b8df7254bd4e3f9a7f9b33",
-    "createdAt": "2025-06-04T20:37:36.240309",
-    "updatedAt": "2025-06-04T20:37:36.240319"
+    "name": "Tech Enthusiasts",
+    "description": "A club for students passionate about new technologies, coding, and hackathons.",
+    "members": ["664b8df7254bd4e3f9a7f9b31", "664b8df7254bd4e3f9a7f9b32"],
+    "meetingStartTime": "2025-06-10T17:00:00.000Z",
+    "meetingEndTime": "2025-06-10T19:00:00.000Z",
+    "createdAt": "2025-06-04T21:00:00.000Z",
+    "updatedAt": "2025-06-04T21:00:00.000Z"
   },
   {
-    "title": "Web Development Basics",
-    "description": "HTML, CSS, and intro to web frameworks",
-    "instructor": "664b8df7254bd4e3f9a7f9b34",
-    "students": ["664b8df7254bd4e3f9a7f9b31"],
-    "rooms": "664b8df7254bd4e3f9a7f9b34",
-    "createdAt": "2025-06-04T20:37:36.240309",
-    "updatedAt": "2025-06-04T20:37:36.240319"
+    "name": "Literature Circle",
+    "description": "Group of students discussing classic and contemporary literature every week.",
+    "members": ["664b8df7254bd4e3f9a7f9b32", "664b8df7254bd4e3f9a7f9b36"],
+    "meetingStartTime": "2025-06-12T15:30:00.000Z",
+    "meetingEndTime": "2025-06-12T17:00:00.000Z",
+    "createdAt": "2025-06-04T21:00:00.000Z",
+    "updatedAt": "2025-06-04T21:00:00.000Z"
   },
   {
-    "title": "Data Structures",
-    "description": "In-depth study of algorithms and data handling",
-    "instructor": "664b8df7254bd4e3f9a7f9b35",
-    "students": [],
-    "rooms": "664b8df7254bd4e3f9a7f9b35",
-    "createdAt": "2025-06-04T20:37:36.240309",
-    "updatedAt": "2025-06-04T20:37:36.240319"
+    "name": "Photography Club",
+    "description": "For students interested in photography, editing, and photo walks around campus.",
+    "members": ["664b8df7254bd4e3f9a7f9b31", "664b8df7254bd4e3f9a7f9b36"],
+    "meetingStartTime": "2025-06-14T13:00:00.000Z",
+    "meetingEndTime": "2025-06-14T15:00:00.000Z",
+    "createdAt": "2025-06-04T21:00:00.000Z",
+    "updatedAt": "2025-06-04T21:00:00.000Z"
   }
 ]
