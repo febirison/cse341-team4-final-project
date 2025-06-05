@@ -15,7 +15,7 @@ const options = {
     },
     servers: [
       {
-        url: 'http://localhost:3000/', // Change to our url on render.com (web service) later
+        url: 'https://cse341-team4-final-project.onrender.com', // Change to our url on render.com (web service) later
       },
     ],
   },
