@@ -68,7 +68,7 @@ const deleteCourse = async (req, res) => {
     if (result) {
       res.status(204).send();
     } else {
-      res.status(404).json({ message: 'Student not found' });
+      res.status(404).json({ message: 'Course not found.' });
     }
   } catch {
     res.status(400).json({ error: 'Invalid ID format' });
