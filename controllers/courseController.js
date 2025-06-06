@@ -32,7 +32,10 @@ const createCourse = async (req, res) => {
   try {
     const course = new Course(req.body);
     await course.save();
-    res.status(201).json(course);
+    res.status(201).json({
+      message: 'Course created successfully.',
+      courseId: course._id,
+    });
   } catch (error) {
     res
       .status(400)
@@ -50,7 +53,7 @@ const updateCourse = async (req, res) => {
     if (!course) {
       return res.status(404).json({ message: 'Course not found' });
     }
-    res.status(200).json(course);
+    res.status(200).json({ message: 'Course updated successfully.' });
   } catch (error) {
     res
       .status(400)
@@ -61,15 +64,14 @@ const updateCourse = async (req, res) => {
 // Delete a course
 const deleteCourse = async (req, res) => {
   try {
-    const course = await Course.findByIdAndDelete(req.params.id);
-    if (!course) {
-      return res.status(404).json({ message: 'Course not found' });
+    const result = await Course.findByIdAndDelete(req.params.id);
+    if (result) {
+      res.status(204).send();
+    } else {
+      res.status(404).json({ message: 'Student not found' });
     }
-    res.status(200).json({ message: 'Course deleted successfully' });
-  } catch (error) {
-    res
-      .status(500)
-      .json({ message: 'Error deleting course', error: error.message });
+  } catch {
+    res.status(400).json({ error: 'Invalid ID format' });
   }
 };
 
