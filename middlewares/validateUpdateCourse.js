@@ -9,6 +9,12 @@ const validateUpdateCourse = (req, res, next) => {
     'students.*': 'string',
   };
 
+  const keys = Object.keys(req.body);
+  if (keys.length === 0) {
+    return res
+      .status(400)
+      .json({ errors: { message: 'No fields to update.' } });
+  }
   const messages = {
     'instructor.string': 'Instructor must be a valid ID string.',
     'rooms.string': 'Room must be a valid ID string.',
