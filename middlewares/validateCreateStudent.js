@@ -26,7 +26,7 @@ const validateCreateStudent = (req, res, next) => {
 
   validator(req.body, rules, messages, (err, status) => {
     if (!status) {
-      return res.status(422).json({ errors: err.errors });
+      return res.status(400).json({ errors: err.errors });
     }
     next();
   });
