@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Campus Coordinator API",
-    "description": "# Campus Coordinator API\n\nThis is an API server for the Campus Coordinator API project.\n\n## Project Information\nDeveloped by **Team 4** for *CSE341* at BYU Pathway.\n\n---\n\n## Development Team\n* **Anderson Okai**\n* **Jorge Luis Sosa Nunez**\n* **Andrew Omoniyi Mogbeyiromore**\n* **Erwin Jared Larios**\n* **Amornrat Dizon Howard**\n* **David da Rocha Fernandes**\n* **Ivan Sembatya**\n\n---\n\n*API Version 1.0.0 - June 2025*",
+    "description": "This is an API server for the Campus Coordinator API project.\n\n## Project Information\nDeveloped by **Team 4** for *CSE341* at BYU Pathway.\n\n---\n\n## Development Team\n* **Anderson Okai**\n* **Jorge Luis Sosa Nunez**\n* **Andrew Omoniyi Mogbeyiromore**\n* **Erwin Jared Larios**\n* **Amornrat Dizon Howard**\n* **David da Rocha Fernandes**\n* **Ivan Sembatya**\n\n---\n\n*API Version 1.0.0 - June 2025*",
     "version": "1.0.0"
   },
   "host": "cse341-team4-final-project-nh1g.onrender.com",
