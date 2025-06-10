@@ -46,6 +46,8 @@ Content-Type: application/json
 ### DELETE - Delete a student by ID
 DELETE http://localhost:3000/Student/682ef2ce4b1fcade62d8e4e3
 
+console.log(process.env.MONGO_URI);
+
 
 ###
 GET https://cse341-team4-final-project.onrender.com/Student
