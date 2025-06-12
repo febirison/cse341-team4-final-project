@@ -4,10 +4,7 @@ const router = express.Router();
 const validateCreateCourse = require('../middlewares/validateCreateCourse');
 const validateUpdateCourse = require('../middlewares/validateUpdateCourse');
 const courseController = require('../controllers/courseController');
-const {
-  isAuthenticated,
-  isProfileComplete,
-} = require('../middlewares/auth.middleware');
+const ensureAuthenticated = require('../middlewares/authentication');
 
 // GET all Courses
 router.get('/', courseController.getAllCourses);
@@ -18,27 +15,20 @@ router.get('/:id', courseController.getCourseById);
 // POST a new Course
 router.post(
   '/',
-  isAuthenticated,
+  ensureAuthenticated,
   validateCreateCourse,
-  isProfileComplete,
   courseController.createCourse,
 );
 
 // PUT update a Course by ID
 router.put(
   '/:id',
-  isAuthenticated,
+  ensureAuthenticated,
   validateUpdateCourse,
-  isProfileComplete,
   courseController.updateCourse,
 );
 
 // DELETE a Course by ID
-router.delete(
-  '/:id',
-  isAuthenticated,
-  isProfileComplete,
-  courseController.deleteCourse,
-);
+router.delete('/:id', ensureAuthenticated, courseController.deleteCourse);
 
 module.exports = router;

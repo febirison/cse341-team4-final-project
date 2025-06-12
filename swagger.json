@@ -8,16 +8,7 @@
   "host": "cse341-team4-final-project-nh1g.onrender.com",
   "basePath": "/",
   "schemes": ["https"],
-  "security": [
-    {
-      "oauth2": ["user:email"]
-    }
-  ],
   "tags": [
-    {
-      "name": "Auth",
-      "description": "Authentication and user profile operations"
-    },
     {
       "name": "Students",
       "description": "Operations related to students"
@@ -34,7 +25,30 @@
       "name": "Rooms",
       "description": "Operations related to rooms"
     }
-    
+  ],
+  "securityDefinitions": {
+    "githubOAuth": {
+      "type": "oauth2",
+      "authorizationUrl": "https://github.com/login/oauth/authorize",
+      "flow": "implicit",
+      "scopes": {
+        "read:user": "read user profile info",
+        "user:email": "read user email",
+        "read:student": "read your student info",
+        "write:student": "modify student info (create, update, delete)",
+        "read:course": "read your course info",
+        "write:course": "modify course info (create, update, delete)",
+        "read:club": "read your club info",
+        "write:club": "modify club info (create, update, delete)",
+        "read:room": "read your room info",
+        "write:room": "modify room info (create, update, delete)"
+      }
+    }
+  },
+  "security": [
+    {
+      "githubOAuth": []
+    }
   ],
   "paths": {
     "/student": {
@@ -74,7 +88,12 @@
           "201": {
             "description": "Student created successfully"
           }
-        }
+        },
+        "security": [
+          {
+            "githubOAuth": []
+          }
+        ]
       }
     },
     "/student/{id}": {
@@ -137,7 +156,12 @@
           "404": {
             "description": "Student not found"
           }
-        }
+        },
+        "security": [
+          {
+            "githubOAuth": []
+          }
+        ]
       },
       "delete": {
         "tags": ["Students"],
@@ -159,7 +183,12 @@
           "404": {
             "description": "Student not found"
           }
-        }
+        },
+        "security": [
+          {
+            "githubOAuth": []
+          }
+        ]
       }
     },
     "/course": {
@@ -199,7 +228,12 @@
           "201": {
             "description": "Course created successfully"
           }
-        }
+        },
+        "security": [
+          {
+            "githubOAuth": []
+          }
+        ]
       }
     },
     "/course/{id}": {
@@ -262,7 +296,12 @@
           "404": {
             "description": "Course not found"
           }
-        }
+        },
+        "security": [
+          {
+            "githubOAuth": []
+          }
+        ]
       },
       "delete": {
         "tags": ["Courses"],
@@ -284,7 +323,12 @@
           "404": {
             "description": "Course not found"
           }
-        }
+        },
+        "security": [
+          {
+            "githubOAuth": []
+          }
+        ]
       }
     },
     "/club": {
@@ -324,7 +368,12 @@
           "201": {
             "description": "Club created successfully"
           }
-        }
+        },
+        "security": [
+          {
+            "githubOAuth": []
+          }
+        ]
       }
     },
     "/club/{id}": {
@@ -387,7 +436,12 @@
           "404": {
             "description": "Club not found"
           }
-        }
+        },
+        "security": [
+          {
+            "githubOAuth": []
+          }
+        ]
       },
       "delete": {
         "tags": ["Clubs"],
@@ -409,7 +463,12 @@
           "404": {
             "description": "Club not found"
           }
-        }
+        },
+        "security": [
+          {
+            "githubOAuth": []
+          }
+        ]
       }
     },
     "/room": {
@@ -449,7 +508,12 @@
           "201": {
             "description": "Room created successfully"
           }
-        }
+        },
+        "security": [
+          {
+            "githubOAuth": []
+          }
+        ]
       }
     },
     "/room/{id}": {
@@ -512,7 +576,12 @@
           "404": {
             "description": "Room not found"
           }
-        }
+        },
+        "security": [
+          {
+            "githubOAuth": []
+          }
+        ]
       },
       "delete": {
         "tags": ["Rooms"],
@@ -534,136 +603,17 @@
           "404": {
             "description": "Room not found"
           }
-        }
-      }
-    },
-    "/auth/github/login": {
-      "get": {
-        "tags": ["Auth"],
-        "summary": "Redirect to GitHub for authentication",
-        "description": "Starts the GitHub OAuth authentication process. Click the green Authorize button in the top right to log in with your GitHub account and grant access to your profile information.",
-        "deprecated": true,
-        "responses": {
-          "302": {
-            "description": "Redirects to GitHub OAuth page"
-          }
-        }
-      }
-    },
-    "/auth/github/logout": {
-      "get": {
-        "tags": ["Auth"],
-        "summary": "Logout user",
-        "description": "Logs out the currently authenticated user and destroys the session",
-        "security": [
-          {
-            "oauth2": ["user:email"]
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully logged out",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "example": "Logged out successfully"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Not authenticated"
-          }
-        }
-      }
-    },
-    "/auth/profile": {
-      "get": {
-        "tags": ["Auth"],
-        "summary": "Get the authenticated user profile",
-        "security": [
-          {
-            "oauth2": ["user:email"]
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "User profile data",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Student"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Not authenticated"
-          },
-          "404": {
-            "description": "User not found"
-          }
-        }
-      },
-      "put": {
-        "tags": ["Auth"],
-        "summary": "Update authenticated user profile",
-        "security": [
-          {
-            "oauth2": ["user:email"]
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Student"
-              }
-            }
-          }
         },
-        "responses": {
-          "200": {
-            "description": "User profile updated successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Student"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Not authenticated"
-          },
-          "404": {
-            "description": "User not found"
+        "security": [
+          {
+            "githubOAuth": []
           }
-        }
+        ]
       }
     }
   },
+    
   "components": {
-    "securitySchemes": {
-      "oauth2": {
-        "type": "oauth2",
-        "flows": {
-          "implicit": {
-            "authorizationUrl": "/auth/github/login",
-            "scopes": {
-              "user:email": "Read user email address"
-            }
-          }
-        }
-      }
-    },
     "schemas": {
       "Student": {
         "type": "object",
