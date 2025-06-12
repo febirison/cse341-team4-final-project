@@ -6,11 +6,11 @@ const validateUpdateCourse = require('../middlewares/validateUpdateCourse');
 const courseController = require('../controllers/courseController');
 const ensureAuthenticated = require('../middlewares/authentication');
 
-// GET all Courses
-router.get('/', courseController.getAllCourses);
+// GET all courses
+router.get('/', courseController.getAll);
 
-// GET a single Course by ID
-router.get('/:id', courseController.getCourseById);
+// GET a single course by ID
+router.get('/:id', courseController.getSingle);
 
 // POST a new Course
 router.post(
