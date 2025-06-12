@@ -21,7 +21,6 @@ A backend API for managing campus activities, built for CSE341 Final Project.
 1. Clone the repo: `git clone https://github.com/your-username/cse341-team1-final-project.git`
 2. Install dependencies: `npm install`
 3. Set up `.env` with MongoDB URI and GitHub OAuth credentials
-    ```
     # Example .env file
 
     # Server configuration
@@ -43,5 +42,5 @@ A backend API for managing campus activities, built for CSE341 Final Project.
 
     # CORS configuration
     ORIGIN=http://localhost:8080    # Allowed origin for frontend requests
-    ```
-4. Run the app: `npm start` or `npm run dev` for development mode
+    
+4. Run the app: `npm start` or npx nodemon start.js

@@ -1,6 +1,5 @@
 require('dotenv').config();
 const express = require('express');
-const { connectToDb } = require('./db/connection');
 const swaggerUi = require('swagger-ui-express');
 const cors = require('cors');
 const swaggerDocument = require('./swagger.json');
@@ -52,8 +51,8 @@ app.use((err, req, res, next) => {
 });
 
 /* ***********************
- * Server
- *************************/
+ * Server (WE06-move to start.js)
+ ************************
 connectToDb()
   .then(() => {
     app.listen(appConfig.port, () => {
@@ -63,4 +62,6 @@ connectToDb()
   .catch((err) => {
     console.error('Failed to connect to database:', err);
     process.exit(1);
-  });
+  }); */
+
+module.exports = app; // for export app to test
