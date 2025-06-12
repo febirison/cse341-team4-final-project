@@ -8,7 +8,16 @@
   "host": "cse341-team4-final-project-nh1g.onrender.com",
   "basePath": "/",
   "schemes": ["https"],
+  "security": [
+    {
+      "oauth2": ["user:email"]
+    }
+  ],
   "tags": [
+    {
+      "name": "Auth",
+      "description": "Authentication and user profile operations"
+    },
     {
       "name": "Students",
       "description": "Operations related to students"
@@ -25,13 +34,12 @@
       "name": "Rooms",
       "description": "Operations related to rooms"
     }
+    
   ],
   "paths": {
     "/student": {
       "get": {
-        "tags": [
-          "Students"
-        ],
+        "tags": ["Students"],
         "summary": "Get all students",
         "responses": {
           "200": {
@@ -50,9 +58,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Students"
-        ],
+        "tags": ["Students"],
         "summary": "Create a new student",
         "requestBody": {
           "required": true,
@@ -73,9 +79,7 @@
     },
     "/student/{id}": {
       "get": {
-        "tags": [
-          "Students"
-        ],
+        "tags": ["Students"],
         "summary": "Get a student by ID",
         "parameters": [
           {
@@ -104,9 +108,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Students"
-        ],
+        "tags": ["Students"],
         "summary": "Update a student by ID",
         "parameters": [
           {
@@ -138,9 +140,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Students"
-        ],
+        "tags": ["Students"],
         "summary": "Delete a student by ID",
         "parameters": [
           {
@@ -164,9 +164,7 @@
     },
     "/course": {
       "get": {
-        "tags": [
-          "Courses"
-        ],
+        "tags": ["Courses"],
         "summary": "Get all course",
         "responses": {
           "200": {
@@ -185,9 +183,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Courses"
-        ],
+        "tags": ["Courses"],
         "summary": "Create a new courses",
         "requestBody": {
           "required": true,
@@ -208,9 +204,7 @@
     },
     "/course/{id}": {
       "get": {
-        "tags": [
-          "Courses"
-        ],
+        "tags": ["Courses"],
         "summary": "Get a course by ID",
         "parameters": [
           {
@@ -239,9 +233,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Courses"
-        ],
+        "tags": ["Courses"],
         "summary": "Update a course by ID",
         "parameters": [
           {
@@ -273,9 +265,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Courses"
-        ],
+        "tags": ["Courses"],
         "summary": "Delete a course by ID",
         "parameters": [
           {
@@ -299,9 +289,7 @@
     },
     "/club": {
       "get": {
-        "tags": [
-          "Clubs"
-        ],
+        "tags": ["Clubs"],
         "summary": "Get all clubs",
         "responses": {
           "200": {
@@ -320,9 +308,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Clubs"
-        ],
+        "tags": ["Clubs"],
         "summary": "Create a new club",
         "requestBody": {
           "required": true,
@@ -343,9 +329,7 @@
     },
     "/club/{id}": {
       "get": {
-        "tags": [
-          "Clubs"
-        ],
+        "tags": ["Clubs"],
         "summary": "Get a club by ID",
         "parameters": [
           {
@@ -374,9 +358,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Clubs"
-        ],
+        "tags": ["Clubs"],
         "summary": "Update a club by ID",
         "parameters": [
           {
@@ -408,9 +390,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Clubs"
-        ],
+        "tags": ["Clubs"],
         "summary": "Delete a club by ID",
         "parameters": [
           {
@@ -434,9 +414,7 @@
     },
     "/room": {
       "get": {
-        "tags": [
-          "Rooms"
-        ],
+        "tags": ["Rooms"],
         "summary": "Get all rooms",
         "responses": {
           "200": {
@@ -455,9 +433,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Rooms"
-        ],
+        "tags": ["Rooms"],
         "summary": "Create a new room",
         "requestBody": {
           "required": true,
@@ -478,9 +454,7 @@
     },
     "/room/{id}": {
       "get": {
-        "tags": [
-          "Rooms"
-        ],
+        "tags": ["Rooms"],
         "summary": "Get a room by ID",
         "parameters": [
           {
@@ -509,9 +483,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Rooms"
-        ],
+        "tags": ["Rooms"],
         "summary": "Update a room by ID",
         "parameters": [
           {
@@ -543,9 +515,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Rooms"
-        ],
+        "tags": ["Rooms"],
         "summary": "Delete a room by ID",
         "parameters": [
           {
@@ -566,9 +536,134 @@
           }
         }
       }
+    },
+    "/auth/github/login": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Redirect to GitHub for authentication",
+        "description": "Starts the GitHub OAuth authentication process. Click the green Authorize button in the top right to log in with your GitHub account and grant access to your profile information.",
+        "deprecated": true,
+        "responses": {
+          "302": {
+            "description": "Redirects to GitHub OAuth page"
+          }
+        }
+      }
+    },
+    "/auth/github/logout": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Logout user",
+        "description": "Logs out the currently authenticated user and destroys the session",
+        "security": [
+          {
+            "oauth2": ["user:email"]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully logged out",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Logged out successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated"
+          }
+        }
+      }
+    },
+    "/auth/profile": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Get the authenticated user profile",
+        "security": [
+          {
+            "oauth2": ["user:email"]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User profile data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Student"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Auth"],
+        "summary": "Update authenticated user profile",
+        "security": [
+          {
+            "oauth2": ["user:email"]
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Student"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User profile updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Student"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
     }
   },
   "components": {
+    "securitySchemes": {
+      "oauth2": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "/auth/github/login",
+            "scopes": {
+              "user:email": "Read user email address"
+            }
+          }
+        }
+      }
+    },
     "schemas": {
       "Student": {
         "type": "object",
@@ -645,25 +740,28 @@
         "type": "object",
         "properties": {
           "title": {
-          "type": "string",
-          "example": "Intro to Programming"
+            "type": "string",
+            "example": "Intro to Programming"
           },
           "description": {
-          "type": "string",
-          "example": "Learn JavaScript fundamentals"
+            "type": "string",
+            "example": "Learn JavaScript fundamentals"
           },
           "instructor": {
-          "type": "string",
-          "description": "MongoDB ObjectId reference to Instructor",
-          "example": "664b8df7254bd4e3f9a7f9b30"
+            "type": "string",
+            "description": "MongoDB ObjectId reference to Instructor",
+            "example": "664b8df7254bd4e3f9a7f9b30"
           },
           "students": {
-          "type": "array",
+            "type": "array",
             "items": {
-            "type": "string",
-            "description": "MongoDB ObjectId reference to Student"
+              "type": "string",
+              "description": "MongoDB ObjectId reference to Student"
             },
-            "example": ["664b8df7254bd4e3f9a7f9b31", "664b8df7254bd4e3f9a7f9b32"]
+            "example": [
+              "664b8df7254bd4e3f9a7f9b31",
+              "664b8df7254bd4e3f9a7f9b32"
+            ]
           },
           "rooms": {
             "type": "string",
@@ -735,11 +833,7 @@
             }
           }
         },
-        "required": [
-          "buildingName",
-          "roomNumber",
-          "capacity"
-        ]
+        "required": ["buildingName", "roomNumber", "capacity"]
       }
     }
   }

@@ -1,3 +1,4 @@
+const { required } = require('joi');
 const mongoose = require('mongoose');
 
 const studentSchema = new mongoose.Schema(
@@ -15,11 +16,11 @@ const studentSchema = new mongoose.Schema(
     gender: {
       type: String,
       enum: ['male', 'female', 'other'],
-      required: true,
+      required: false,
     },
     dateOfBirth: {
       type: Date,
-      required: true,
+      required: false,
     },
     email: {
       type: String,
@@ -29,7 +30,7 @@ const studentSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: true,
+      required: false,
     },
     githubId: {
       type: String,
@@ -38,6 +39,7 @@ const studentSchema = new mongoose.Schema(
     profilePicture: {
       type: String,
       trim: true,
+      required: false,
     },
     courses: [
       {
