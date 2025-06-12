@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const mongoose = require('mongoose');
 const supertest = require('supertest');
 const app = require('../server'); // export app from server.js
@@ -12,7 +14,9 @@ describe('Student API Endpoints', () => {
 
   // Run once before all tests
   beforeAll(async () => {
-    await mongoose.connect(process.env.MONGODB_URI); // Connect to MongoDB
+    await mongoose.connect(process.env.MONGODB_URI);
+
+    await Student.deleteMany({ email: 'test@example.com' }); // to protect duplicate email.
 
     // Create a test student to be used in the test cases
     testStudent = await Student.create({
@@ -23,6 +27,7 @@ describe('Student API Endpoints', () => {
       email: 'test@example.com',
       password: 'password123',
     });
+    console.log('📌 Created test student:', testStudent);
   });
 
   // Run once after all tests are finished
@@ -40,9 +45,12 @@ describe('Student API Endpoints', () => {
 
   // Test: GET a specific student by ID
   test('GET /student/:id should return a single student', async () => {
+    console.log('🔎 Test using student ID:', testStudent._id);
     const res = await request.get(`/student/${testStudent._id}`);
-    expect(res.statusCode).toBe(200); // Should return 200 OK
-    expect(res.body).toHaveProperty('name', 'Test'); // Name should match
+    console.log('📥 RESPONSE STATUS =', res.statusCode);
+    console.log('📥 RESPONSE BODY =', res.body);
+    expect(res.statusCode).toBe(200);
+    expect(res.body).toHaveProperty('name', 'Test');
   });
 
   // Test: GET with valid ID that doesn't exist
