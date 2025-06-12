@@ -41,4 +41,13 @@ export default [
       ],
     },
   },
+  // ✅ added block for test file.
+  {
+    files: ['**/*.test.js'],
+    languageOptions: {
+      globals: {
+        ...globals.jest,
+      },
+    },
+  },
 ];

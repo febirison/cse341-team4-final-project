@@ -8,11 +8,10 @@ router.get('/', (req, res) => {
 });
 
 // Main app routes
+router.use('/auth', require('./auth'));
 router.use('/student', require('./students'));
-console.log('Get all students called');
-
 router.use('/course', require('./courses'));
-router.use('/club', require('./clubs')); //for week 06
-router.use('/room', require('./rooms')); //for week 06
+router.use('/club', require('./clubs'));
+router.use('/room', require('./rooms'));
 
 module.exports = router;
