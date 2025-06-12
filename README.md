@@ -21,25 +21,27 @@ A backend API for managing campus activities, built for CSE341 Final Project.
 1. Clone the repo: `git clone https://github.com/your-username/cse341-team1-final-project.git`
 2. Install dependencies: `npm install`
 3. Set up `.env` with MongoDB URI and GitHub OAuth credentials
-    - Example `.env` file:
-      ```
-        HOST=examplehost
-        PORT=1234
-        NODE_ENV=development
+    ```
+    # Example .env file
 
-        MONGODB_URI=mongodb+srv://username:password@cluster0.example.mongodb.net/dbname
+    # Server configuration
+    HOST=examplehost                # Hostname or IP address for the server
+    PORT=1234                       # Port number for the server
+    NODE_ENV=development            # Environment: development or production
 
-        # JWT configuration
-        JWT_SECRET=example_jwt_secret
-        JWT_EXPIRES_IN=1h
+    # Database configuration
+    MONGODB_URI=mongodb+srv://username:password@cluster0.example.mongodb.net/dbname
 
-        # GitHub OAuth configuration
-        GITHUB_CLIENT_ID=example_github_client_id
-        GITHUB_CLIENT_SECRET=example_github_client_secret
-        GITHUB_CALLBACK_URL=http://localhost:1234/auth/github/callback
+    # JWT (Authentication) configuration
+    JWT_SECRET=your_jwt_secret      # Secret key for signing JWT tokens
+    JWT_EXPIRES_IN=1h               # Token expiration time (e.g., 1h, 7d)
 
-        # Origin 
-        ORIGIN=http://localhost:8080
+    # GitHub OAuth configuration
+    GITHUB_CLIENT_ID=your_github_client_id
+    GITHUB_CLIENT_SECRET=your_github_client_secret
+    GITHUB_CALLBACK_URL=http://localhost:1234/auth/github/callback
 
-      ```
+    # CORS configuration
+    ORIGIN=http://localhost:8080    # Allowed origin for frontend requests
+    ```
 4. Run the app: `npm start` or `npm run dev` for development mode
