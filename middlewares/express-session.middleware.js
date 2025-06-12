@@ -10,10 +10,7 @@ const sessionMiddleware = session({
     httpOnly: true,
     maxAge: 24 * 60 * 60 * 1000,
     sameSite: appConfig.env === 'production' ? 'none' : 'lax',
-    domain:
-      appConfig.env === 'production'
-        ? 'cse341-library-api-wlf4.onrender.com'
-        : undefined,
+    domain: appConfig.env === 'production' ? appConfig.host : undefined,
   },
   proxy: appConfig.env === 'production',
 });
