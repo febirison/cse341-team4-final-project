@@ -68,7 +68,7 @@ const deleteRoom = async (req, res) => {
     if (!room) {
       return res.status(404).json({ message: 'Room not found' });
     }
-    res.status(200).json({ message: 'Room deleted successfully' });
+    res.status(204).send();
   } catch (error) {
     res
       .status(500)
