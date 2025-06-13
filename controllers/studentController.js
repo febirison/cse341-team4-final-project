@@ -5,7 +5,7 @@ const Student = require('../models/Student');
 const getAll = async (req, res) => {
   try {
     const students = await Student.find();
-    console.log('Get all students called');
+    //console.log('Get all students called');
     res.status(200).json(students);
   } catch {
     res.status(500).json({ error: 'Failed to retrieve students.' });
