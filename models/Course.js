@@ -2,28 +2,34 @@ const mongoose = require('mongoose');
 
 const courseSchema = new mongoose.Schema(
   {
-    title: {
+    courseName: {
       type: String,
       required: true,
+      trim: true,
+    },
+    courseCode: {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true,
     },
     description: {
       type: String,
-      required: true,
+      trim: true,
     },
     instructor: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Instructor',
+      ref: 'User', // Assuming instructors are stored in the User collection
       required: true,
     },
-    students: [
+    enrolledStudents: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Student',
       },
     ],
-    rooms: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Room',
+    credits: {
+      type: Number,
       required: true,
     },
   },
@@ -31,5 +37,6 @@ const courseSchema = new mongoose.Schema(
     timestamps: true,
   },
 );
+
 const Course = mongoose.model('Course', courseSchema);
 module.exports = Course;

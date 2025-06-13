@@ -1,15 +1,14 @@
 const mongoose = require('mongoose');
 const Course = require('../models/Course');
 
-// Get all courses
-const getAllCourses = async (req, res) => {
+// GET all courses
+const getAll = async (req, res) => {
   try {
-    const courses = await Course.find();
+    const courses = await Course.find().populate('instructor').populate('enrolledStudents');
+    console.log('Get all courses called');
     res.status(200).json(courses);
-  } catch (error) {
-    res
-      .status(500)
-      .json({ message: 'Error fetching courses', error: error.message });
+  } catch {
+    res.status(500).json({ error: 'Failed to retrieve courses.' });
   }
 };
 
@@ -17,7 +16,7 @@ const getAllCourses = async (req, res) => {
 const getCourseById = async (req, res) => {
   const { id } = req.params;
 
-  // ตรวจสอบว่า id เป็น ObjectId ถูกต้องไหม
+  // Checking id that ObjectId is corrected 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).json({ message: 'Invalid course ID format' });
   }
@@ -27,15 +26,14 @@ const getCourseById = async (req, res) => {
     if (!course) {
       return res.status(404).json({ message: 'Course not found' });
     }
-    res.status(200).json(course);
-  } catch (error) {
+  } catch {
     res
-      .status(500)
-      .json({ message: 'Error fetching course', error: error.message });
+      .status(400)
+      .json({ error: 'Invalid ID format or failed to retrieve course.' });
   }
 };
 
-// Create a new course
+// CREATE a new course
 const createCourse = async (req, res) => {
   try {
     const course = new Course(req.body);
@@ -44,39 +42,47 @@ const createCourse = async (req, res) => {
       message: 'Course created successfully.',
       courseId: course._id,
     });
-  } catch (error) {
-    res
-      .status(400)
-      .json({ message: 'Invalid course data', error: error.message });
+  } catch {
+    res.status(500).json({ error: 'Failed to create course.' });
   }
 };
 
-// Update an existing course
+// UPDATE a course by ID
 const updateCourse = async (req, res) => {
+  const id = req.params.id;
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ error: 'Invalid course ID format.' });
+  }
+
   try {
-    const course = await Course.findByIdAndUpdate(req.params.id, req.body, {
+    const result = await Course.findByIdAndUpdate(id, req.body, {
       new: true,
       runValidators: true,
     });
-    if (!course) {
-      return res.status(404).json({ message: 'Course not found' });
+
+    if (result) {
+      res.status(200).json({ message: 'Course updated successfully.' });
+    } else {
+      res.status(404).json({ message: 'Course not found.' });
     }
-    res.status(200).json({ message: 'Course updated successfully.' });
-  } catch (error) {
-    res
-      .status(400)
-      .json({ message: 'Error updating course', error: error.message });
+  } catch (err) {
+    if (err.name === 'ValidationError') {
+      return res
+        .status(400)
+        .json({ error: 'Validation failed', details: err.errors });
+    }
+    res.status(500).json({ error: 'Failed to update course.' });
   }
 };
 
-// Delete a course
+// DELETE a course by ID
 const deleteCourse = async (req, res) => {
   try {
     const result = await Course.findByIdAndDelete(req.params.id);
     if (result) {
       res.status(204).send();
     } else {
-      res.status(404).json({ message: 'Course not found.' });
+      res.status(404).json({ message: 'Course not found' });
     }
   } catch {
     res.status(400).json({ error: 'Invalid ID format' });
@@ -84,8 +90,8 @@ const deleteCourse = async (req, res) => {
 };
 
 module.exports = {
-  getAllCourses,
-  getCourseById,
+  getAll,
+  getSingle,
   createCourse,
   updateCourse,
   deleteCourse,
