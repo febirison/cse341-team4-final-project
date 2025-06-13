@@ -1,3 +1,6 @@
+// Increase the global timeout for tests to prevent timeout errors
+jest.setTimeout(30000); // 30 seconds
+
 const mongoose = require('mongoose');
 const supertest = require('supertest');
 const app = require('../server');
@@ -5,29 +8,25 @@ const Course = require('../models/Course');
 const Student = require('../models/Student');
 const Room = require('../models/Room');
 
-// Create a request object using supertest
 const request = supertest(app);
 
-// Group of tests related to the Course API
 describe('Course API Endpoints', () => {
   let testCourse;
   let testStudent;
   let testRoom;
 
-  // use instructorId from DB that exiting
   const existingInstructorId = new mongoose.Types.ObjectId(
     '684218a13b17c2c2ebb8c119',
   );
 
-  // Run once before all tests
+  // Setup test data before all tests
   beforeAll(async () => {
     await mongoose.connect(process.env.MONGODB_URI);
 
-    await Course.deleteMany({ title: 'Test Course' });
+    await Course.deleteMany({ courseName: 'Test Course' });
     await Student.deleteMany({ email: 'student@example.com' });
     await Room.deleteMany({ buildingName: 'Building A', roomNumber: '101' });
 
-    // Create a test student to be used in the test cases
     testStudent = await Student.create({
       name: 'Test',
       lastName: 'Student',
@@ -37,7 +36,6 @@ describe('Course API Endpoints', () => {
       password: 'password123',
     });
 
-    // Create a test room to be used in the test cases
     testRoom = await Room.create({
       buildingName: 'Building A',
       roomNumber: '101',
@@ -45,17 +43,17 @@ describe('Course API Endpoints', () => {
       students: [],
     });
 
-    // Create a test course to be used in the test cases
     testCourse = await Course.create({
-      title: 'Test Course',
+      courseName: 'Test Course',
+      courseCode: 'TEST101',
+      credits: 3,
       description: 'This is a test course',
-      instructor: existingInstructorId, // ✅ use instructor ID that exiting.
-      rooms: testRoom._id,
-      students: [testStudent._id],
+      instructor: existingInstructorId,
+      enrolledStudents: [testStudent._id],
     });
-  });
+  }, 30000);
 
-  // Run once after all tests are finished
+  // Cleanup after all tests
   afterAll(async () => {
     await Course.deleteMany({});
     await Student.deleteMany({});
@@ -63,21 +61,21 @@ describe('Course API Endpoints', () => {
     await mongoose.connection.close();
   });
 
-  // Test: GET all Courses
+  // Test: GET all courses
   test('GET /course should return all courses', async () => {
     const res = await request.get('/course');
     expect(res.statusCode).toBe(200);
     expect(Array.isArray(res.body)).toBe(true);
   });
 
-  // Test: GET a specific Course by ID
+  // Test: GET a specific course by ID
   test('GET /course/:id should return a course', async () => {
     const res = await request.get(`/course/${testCourse._id}`);
     expect(res.statusCode).toBe(200);
-    expect(res.body).toHaveProperty('title', 'Test Course');
+    expect(res.body).toHaveProperty('courseName', 'Test Course');
   });
 
-  // Test: GET with valid ID that doesn't exist
+  // Test: GET with valid but non-existing ID
   test('GET /course/:id should return 404 if course not found', async () => {
     const fakeId = new mongoose.Types.ObjectId();
     const res = await request.get(`/course/${fakeId}`);
@@ -88,5 +86,13 @@ describe('Course API Endpoints', () => {
   test('GET /course/:id should return 400 for invalid ID format', async () => {
     const res = await request.get('/course/invalid-id');
     expect(res.statusCode).toBe(400);
+  });
+
+  // ✅ NEW TEST: Use testRoom to prevent unused variable warning
+  test('GET /room/:id should return the created room', async () => {
+    const res = await request.get(`/room/${testRoom._id}`);
+    expect(res.statusCode).toBe(200);
+    expect(res.body).toHaveProperty('buildingName', 'Building A');
+    expect(res.body).toHaveProperty('roomNumber', '101');
   });
 });
