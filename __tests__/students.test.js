@@ -27,7 +27,7 @@ describe('Student API Endpoints', () => {
       email: 'test@example.com',
       password: 'password123',
     });
-    console.log('📌 Created test student:', testStudent);
+    //console.log('📌 Created test student:', testStudent);
   });
 
   // Run once after all tests are finished
@@ -45,10 +45,10 @@ describe('Student API Endpoints', () => {
 
   // Test: GET a specific student by ID
   test('GET /student/:id should return a single student', async () => {
-    console.log('🔎 Test using student ID:', testStudent._id);
+    //console.log('🔎 Test using student ID:', testStudent._id);
     const res = await request.get(`/student/${testStudent._id}`);
-    console.log('📥 RESPONSE STATUS =', res.statusCode);
-    console.log('📥 RESPONSE BODY =', res.body);
+    //console.log('📥 RESPONSE STATUS =', res.statusCode);
+    //console.log('📥 RESPONSE BODY =', res.body);
     expect(res.statusCode).toBe(200);
     expect(res.body).toHaveProperty('name', 'Test');
   });

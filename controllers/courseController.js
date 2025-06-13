@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const Course = require('../models/Course');
 
 // Get all courses
@@ -14,8 +15,15 @@ const getAllCourses = async (req, res) => {
 
 // Get a single course by ID
 const getCourseById = async (req, res) => {
+  const { id } = req.params;
+
+  // ตรวจสอบว่า id เป็น ObjectId ถูกต้องไหม
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ message: 'Invalid course ID format' });
+  }
+
   try {
-    const course = await Course.findById(req.params.id);
+    const course = await Course.findById(id);
     if (!course) {
       return res.status(404).json({ message: 'Course not found' });
     }
