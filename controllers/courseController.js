@@ -4,8 +4,10 @@ const Course = require('../models/Course');
 // GET all courses
 const getAll = async (req, res) => {
   try {
-    const courses = await Course.find().populate('instructor').populate('enrolledStudents');
-    console.log('Get all courses called');
+    const courses = await Course.find()
+      .populate('instructor')
+      .populate('enrolledStudents');
+    //console.log('Get all courses called');
     res.status(200).json(courses);
   } catch {
     res.status(500).json({ error: 'Failed to retrieve courses.' });
@@ -13,10 +15,10 @@ const getAll = async (req, res) => {
 };
 
 // Get a single course by ID
-const getCourseById = async (req, res) => {
+const getSingle = async (req, res) => {
   const { id } = req.params;
 
-  // Checking id that ObjectId is corrected 
+  // Checking id that ObjectId is corrected
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).json({ message: 'Invalid course ID format' });
   }
@@ -26,6 +28,7 @@ const getCourseById = async (req, res) => {
     if (!course) {
       return res.status(404).json({ message: 'Course not found' });
     }
+    res.status(200).json(course);
   } catch {
     res
       .status(400)
