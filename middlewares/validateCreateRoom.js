@@ -4,13 +4,13 @@ const validateCreateRoom = (req, res, next) => {
   const rules = {
     buildingName: 'required|string',
     roomNumber: 'required|string',
-    capacity: 'required|number',
+    capacity: 'required|integer',
     'students.*': 'string',
   };
 
   const messages = {
     required: 'The :attribute field is required.',
-    'capacity.number': 'Capacity must be a valid number.',
+    'capacity.integer': 'Capacity must be a valid number.',
   };
 
   validator(req.body, rules, messages, (err, status) => {
