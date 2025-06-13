@@ -61,7 +61,7 @@ const deleteClub = async (req, res) => {
   try {
     const club = await Club.findByIdAndDelete(req.params.id);
     if (!club) return res.status(404).json({ message: 'Club not found' });
-    res.status(200).json({ message: 'Club deleted successfully' });
+    res.status(204).send();
   } catch (error) {
     res.status(500).json({
       message: 'Error deleting club',
