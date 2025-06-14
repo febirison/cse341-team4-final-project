@@ -61,7 +61,7 @@ describe('Course API Endpoints', () => {
     await Student.deleteMany({});
     await Room.deleteMany({});
     await mongoose.connection.close();
-  });
+  }, 10000); // 10-second timeout
 
   // Test: GET all Courses
   test('GET /course should return all courses', async () => {

@@ -34,7 +34,8 @@ describe('Student API Endpoints', () => {
   afterAll(async () => {
     await Student.deleteMany({}); // Clean up: remove test data
     await mongoose.connection.close(); // Close the database connection
-  });
+  }, 10000); // Increase timeout for cleanup
+  // 10-second timeout for cleanup
 
   // Test: GET all students
   test('GET /student should return all students', async () => {
