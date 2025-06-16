@@ -36,7 +36,7 @@ const getSingle = async (req, res) => {
   }
 };
 
-// CREATE a new course
+// Create Course
 const createCourse = async (req, res) => {
   try {
     const course = new Course(req.body);
@@ -45,8 +45,10 @@ const createCourse = async (req, res) => {
       message: 'Course created successfully.',
       courseId: course._id,
     });
-  } catch {
-    res.status(500).json({ error: 'Failed to create course.' });
+  } catch (err) { // Capture the error object here
+    console.error('Error creating course:', err); // THIS IS THE CRUCIAL LINE for debugging
+
+    res.status(500).json({ error: 'Failed to create course. Check server logs for details.' });
   }
 };
 
