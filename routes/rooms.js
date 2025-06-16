@@ -4,6 +4,7 @@ const router = express.Router();
 const validateCreateRoom = require('../middlewares/validateCreateRoom');
 const validateUpdateRoom = require('../middlewares/validateUpdateRoom');
 const roomController = require('../controllers/roomController');
+const ensureAuthenticated = require('../middlewares/authentication');
 
 // GET all Rooms
 router.get('/', roomController.getAllRooms);
@@ -12,12 +13,22 @@ router.get('/', roomController.getAllRooms);
 router.get('/:id', roomController.getRoomById);
 
 // POST create a new Room
-router.post('/', validateCreateRoom, roomController.createRoom);
+router.post(
+  '/',
+  ensureAuthenticated,
+  validateCreateRoom,
+  roomController.createRoom,
+);
 
 // PUT update a Room by ID
-router.put('/:id', validateUpdateRoom, roomController.updateRoom);
+router.put(
+  '/:id',
+  ensureAuthenticated,
+  validateUpdateRoom,
+  roomController.updateRoom,
+);
 
 // DELETE a Room by ID
-router.delete('/:id', roomController.deleteRoom);
+router.delete('/:id', ensureAuthenticated, roomController.deleteRoom);
 
 module.exports = router;

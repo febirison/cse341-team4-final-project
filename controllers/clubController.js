@@ -1,3 +1,4 @@
+const mongoose = require('mongoose'); // ⬅️ don't forget import
 const Club = require('../models/Club');
 
 const getAllClubs = async (req, res) => {
@@ -21,6 +22,10 @@ const getClubById = async (req, res) => {
     if (!club) return res.status(404).json({ message: 'Club not found' });
     res.status(200).json(club);
   } catch (error) {
+    // ✅  added CastError Handling for invalid ObjectId format
+    if (error instanceof mongoose.Error.CastError) {
+      return res.status(400).json({ message: 'Invalid club ID format' });
+    }
     res.status(500).json({
       message: 'Error fetching club',
       error: error.message,
@@ -32,7 +37,11 @@ const createClub = async (req, res) => {
   try {
     const club = new Club(req.body);
     await club.save();
-    res.status(201).json({ message: 'Club created successfully' });
+    // ✅ added send return clubId
+    res.status(201).json({
+      message: 'Club created successfully',
+      club,
+    });
   } catch (error) {
     res.status(400).json({
       message: 'Invalid club data',
@@ -48,7 +57,7 @@ const updateClub = async (req, res) => {
       runValidators: true,
     });
     if (!club) return res.status(404).json({ message: 'Club not found' });
-    res.status(200).json({ message: 'Club updated successfully' });
+    res.status(200).json({ message: 'Club updated successfully', club });
   } catch (error) {
     res.status(400).json({
       message: 'Error updating club',

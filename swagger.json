@@ -5,9 +5,12 @@
     "description": "This is an API server for the Campus Coordinator API project.\n\n## Project Information\nDeveloped by **Team 4** for *CSE341* at BYU Pathway.\n\n---\n\n## Development Team\n* **Anderson Okai**\n* **Jorge Luis Sosa Nunez**\n* **Andrew Omoniyi Mogbeyiromore**\n* **Erwin Jared Larios**\n* **Amornrat Dizon Howard**\n* **David da Rocha Fernandes**\n* **Ivan Sembatya**\n\n---\n\n*API Version 1.0.0 - June 2025*",
     "version": "1.0.0"
   },
-  "host": "cse341-team4-final-project-nh1g.onrender.com",
-  "basePath": "/",
-  "schemes": ["https"],
+  "servers": [
+    {
+      "url": "http://localhost:3000/",
+      "description": "Production server"
+    }
+  ],
   "tags": [
     {
       "name": "Students",
@@ -26,22 +29,25 @@
       "description": "Operations related to rooms"
     }
   ],
-  "securityDefinitions": {
+  "securitySchemes": {
     "githubOAuth": {
       "type": "oauth2",
-      "authorizationUrl": "https://github.com/login/oauth/authorize",
-      "flow": "implicit",
-      "scopes": {
-        "read:user": "read user profile info",
-        "user:email": "read user email",
-        "read:student": "read your student info",
-        "write:student": "modify student info (create, update, delete)",
-        "read:course": "read your course info",
-        "write:course": "modify course info (create, update, delete)",
-        "read:club": "read your club info",
-        "write:club": "modify club info (create, update, delete)",
-        "read:room": "read your room info",
-        "write:room": "modify room info (create, update, delete)"
+      "flows": {
+        "implicit": {
+          "authorizationUrl": "https://github.com/login/oauth/authorize",
+          "scopes": {
+            "read:user": "read user profile info",
+            "user:email": "read user email",
+            "read:student": "read your student info",
+            "write:student": "modify student info (create, update, delete)",
+            "read:course": "read your course info",
+            "write:course": "modify course info (create, update, delete)",
+            "read:club": "read your club info",
+            "write:club": "modify club info (create, update, delete)",
+            "read:room": "read your room info",
+            "write:room": "modify room info (create, update, delete)"
+          }
+        }
       }
     }
   },
@@ -50,6 +56,7 @@
       "githubOAuth": []
     }
   ],
+
   "paths": {
     "/student": {
       "get": {
@@ -86,7 +93,17 @@
         },
         "responses": {
           "201": {
-            "description": "Student created successfully"
+            "description": "Student created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Student"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data"
           }
         },
         "security": [
@@ -178,7 +195,7 @@
         ],
         "responses": {
           "204": {
-            "description": "Student deleted successfully"
+            "description": "No content : student deleted successfully"
           },
           "404": {
             "description": "Student not found"
@@ -226,7 +243,17 @@
         },
         "responses": {
           "201": {
-            "description": "Course created successfully"
+            "description": "Course created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Course"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data"
           }
         },
         "security": [
@@ -318,7 +345,7 @@
         ],
         "responses": {
           "204": {
-            "description": "Course deleted successfully"
+            "description": "No content : Course deleted successfully"
           },
           "404": {
             "description": "Course not found"
@@ -366,7 +393,17 @@
         },
         "responses": {
           "201": {
-            "description": "Club created successfully"
+            "description": "Club created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Club"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data"
           }
         },
         "security": [
@@ -458,7 +495,7 @@
         ],
         "responses": {
           "204": {
-            "description": "Club deleted successfully"
+            "description": "No content : Club deleted successfully"
           },
           "404": {
             "description": "Club not found"
@@ -506,7 +543,17 @@
         },
         "responses": {
           "201": {
-            "description": "Room created successfully"
+            "description": "Room created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Room"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data"
           }
         },
         "security": [
@@ -598,7 +645,7 @@
         ],
         "responses": {
           "204": {
-            "description": "Room deleted successfully"
+            "description": "No content : Room deleted successfully"
           },
           "404": {
             "description": "Room not found"
@@ -616,29 +663,35 @@
   "components": {
     "schemas": {
       "Student": {
+        "title": "Student",
         "type": "object",
         "properties": {
           "name": {
             "type": "string",
+            "description": "First name of the student",
             "example": "Charlie"
           },
           "lastName": {
             "type": "string",
+            "description": "Last name of the student",
             "example": "Lee"
           },
           "gender": {
             "type": "string",
             "enum": ["male", "female", "other"],
+            "description": "Gender identity of the student",
             "example": "other"
           },
           "dateOfBirth": {
             "type": "string",
             "format": "date-time",
+            "description": "Date of birth",
             "example": "2006-03-02T00:00:00.000Z"
           },
           "email": {
             "type": "string",
             "format": "email",
+            "description": "Student's email address",
             "example": "charlie.lee@example.com"
           },
           "password": {
@@ -648,18 +701,21 @@
           },
           "githubId": {
             "type": "string",
+            "description": "GitHub username of the student",
             "example": "charlieGithub"
           },
           "profilePicture": {
             "type": "string",
             "format": "uri",
+            "description": "URI to profile image",
             "example": "https://example.com/images/charlie.jpg"
           },
           "courses": {
             "type": "array",
             "items": {
               "type": "string",
-              "description": "MongoDB ObjectId reference to Course"
+              "description": "MongoDB ObjectId reference to Course",
+              "pattern": "^[a-fA-F0-9]{24}$"
             },
             "example": []
           },
@@ -667,12 +723,14 @@
             "type": "array",
             "items": {
               "type": "string",
-              "description": "MongoDB ObjectId reference to Club"
+              "description": "MongoDB ObjectId reference to Club",
+              "pattern": "^[a-fA-F0-9]{24}$"
             },
             "example": []
           },
           "phoneNumber": {
             "type": "string",
+            "description": "Phone number of the student",
             "example": "345-678-9012"
           }
         },
@@ -685,16 +743,23 @@
           "password"
         ]
       },
-
       "Course": {
+        "title": "Course",
         "type": "object",
         "properties": {
           "title": {
             "type": "string",
+            "description": "Course title",
             "example": "Intro to Programming"
+          },
+          "courseCode": {
+            "type": "string",
+            "description": "Unique code of the course",
+            "example": "CS101"
           },
           "description": {
             "type": "string",
+            "description": "Brief overview of the course",
             "example": "Learn JavaScript fundamentals"
           },
           "instructor": {
@@ -702,53 +767,60 @@
             "description": "MongoDB ObjectId reference to Instructor",
             "example": "664b8df7254bd4e3f9a7f9b30"
           },
-          "students": {
+          "enrolledStudents": {
             "type": "array",
             "items": {
               "type": "string",
-              "description": "MongoDB ObjectId reference to Student"
+              "description": "MongoDB ObjectId reference to Student",
+              "pattern": "^[a-fA-F0-9]{24}$"
             },
             "example": [
               "664b8df7254bd4e3f9a7f9b31",
               "664b8df7254bd4e3f9a7f9b32"
             ]
           },
-          "rooms": {
-            "type": "string",
-            "description": "MongoDB ObjectId reference to Room",
-            "example": "664b8df7254bd4e3f9a7f9b33"
+          "credits": {
+            "type": "number",
+            "description": "Number of credits for the course",
+            "example": 3
           }
         },
-        "required": ["title", "description", "instructor", "rooms"]
+        "required": ["title", "courseCode", "description", "instructor", "credits"]
       },
 
       "Club": {
+        "title": "Club",
         "type": "object",
         "properties": {
           "name": {
             "type": "string",
+            "description": "Name of the club",
             "example": "Art Club"
           },
           "description": {
             "type": "string",
+            "description": "Club's description",
             "example": "Painting, drawing, and sculpture."
           },
           "members": {
             "type": "array",
             "items": {
               "type": "string",
-              "description": "MongoDB ObjectId reference to Student"
+              "description": "MongoDB ObjectId reference to Student",
+              "pattern": "^[a-fA-F0-9]{24}$"
             },
             "example": []
           },
           "meetingStartTime": {
             "type": "string",
             "format": "date-time",
+            "description": "Start time of the club meeting",
             "example": "2025-06-12T14:30:00.000Z"
           },
           "meetingEndTime": {
             "type": "string",
             "format": "date-time",
+            "description": "End time of the club meeting",
             "example": "2025-06-12T16:30:00.000Z"
           }
         },
@@ -759,28 +831,33 @@
           "meetingEndTime"
         ]
       },
-
       "Room": {
+        "title": "Room",
         "type": "object",
         "properties": {
           "buildingName": {
             "type": "string",
+            "description": "Name of the building",
             "example": "Art Center"
           },
           "roomNumber": {
             "type": "string",
+            "description": "Room number",
             "example": "303"
           },
           "capacity": {
             "type": "integer",
+            "description": "Maximum number of people in the room",
             "example": 25
           },
           "students": {
             "type": "array",
             "items": {
               "type": "string",
-              "example": "664b8df7254bd4e3f9a7f9b31"
-            }
+              "description": "MongoDB ObjectId reference to Student",
+              "pattern": "^[a-fA-F0-9]{24}$"
+            },
+            "description": "Students assigned to this room"
           }
         },
         "required": ["buildingName", "roomNumber", "capacity"]

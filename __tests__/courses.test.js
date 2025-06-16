@@ -3,7 +3,7 @@ const supertest = require('supertest');
 const app = require('../server');
 const Course = require('../models/Course');
 const Student = require('../models/Student');
-const Room = require('../models/Room');
+//const Room = require('../models/Room');
 
 // Create a request object using supertest
 const request = supertest(app);
@@ -12,7 +12,7 @@ const request = supertest(app);
 describe('Course API Endpoints', () => {
   let testCourse;
   let testStudent;
-  let testRoom;
+  //let testRoom;
 
   // use instructorId from DB that exiting
   const existingInstructorId = new mongoose.Types.ObjectId(
@@ -25,7 +25,7 @@ describe('Course API Endpoints', () => {
 
     await Course.deleteMany({ title: 'Test Course' });
     await Student.deleteMany({ email: 'student@example.com' });
-    await Room.deleteMany({ buildingName: 'Building A', roomNumber: '101' });
+    //await Room.deleteMany({ buildingName: 'Building A', roomNumber: '101' });
 
     // Create a test student to be used in the test cases
     testStudent = await Student.create({
@@ -38,19 +38,21 @@ describe('Course API Endpoints', () => {
     });
 
     // Create a test room to be used in the test cases
-    testRoom = await Room.create({
+    /*testRoom = await Room.create({
       buildingName: 'Building A',
       roomNumber: '101',
       capacity: 25,
       students: [],
-    });
+    });*/
 
     // Create a test course to be used in the test cases
     testCourse = await Course.create({
       title: 'Test Course',
+      courseCode: 'TEST101',
+      credits: 3,
       description: 'This is a test course',
       instructor: existingInstructorId, // ✅ use instructor ID that exiting.
-      rooms: testRoom._id,
+      //rooms: testRoom._id,
       students: [testStudent._id],
     });
   });
@@ -59,7 +61,7 @@ describe('Course API Endpoints', () => {
   afterAll(async () => {
     await Course.deleteMany({});
     await Student.deleteMany({});
-    await Room.deleteMany({});
+    // await Room.deleteMany({});
     await mongoose.connection.close();
   });
 

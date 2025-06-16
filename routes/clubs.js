@@ -6,6 +6,7 @@ const {
   validateClubData,
   validateClubUpdate,
 } = require('../middlewares/clubValidation');
+const ensureAuthenticated = require('../middlewares/authentication');
 
 // GET /clubs - Get all clubs
 router.get('/', clubController.getAllClubs);
@@ -14,12 +15,22 @@ router.get('/', clubController.getAllClubs);
 router.get('/:id', clubController.getClubById);
 
 // POST /clubs - Create new club (with validation)
-router.post('/', validateClubData, clubController.createClub);
+router.post(
+  '/',
+  ensureAuthenticated,
+  validateClubData,
+  clubController.createClub,
+);
 
 // PUT /clubs/:id - Update club (with validation)
-router.put('/:id', validateClubUpdate, clubController.updateClub);
+router.put(
+  '/:id',
+  ensureAuthenticated,
+  validateClubUpdate,
+  clubController.updateClub,
+);
 
 // DELETE /clubs/:id - Delete club
-router.delete('/:id', clubController.deleteClub);
+router.delete('/:id', ensureAuthenticated, clubController.deleteClub);
 
 module.exports = router;

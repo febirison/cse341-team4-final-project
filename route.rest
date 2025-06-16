@@ -2,7 +2,7 @@
 GET http://localhost:3000/student
 
 ### Get Student by ID
-GET http://localhost:3000/student/6840ff06e9f087bc845a92bd
+GET http://localhost:3000/student/684a92c91247b229a0924836
 
 
 ### Add new Student
@@ -51,3 +51,18 @@ console.log(process.env.MONGO_URI);
 
 ###
 GET https://cse341-team4-final-project.onrender.com/Student
+
+
+###
+POST http://localhost:3000/course HTTP/1.1
+Content-Type: application/json
+
+{
+  "title": "Thai Study",
+  "courseCode": "TH101",
+  "credits": 3,
+  "description": "Learn about Thai",
+  "instructor": "684218d73b17c2c2ebb8c11a",
+  "enrolledStudents": ["6840ff06e9f087bc845a92bd"],
+  "rooms": "6840feebe9f087bc845a92ba"
+}

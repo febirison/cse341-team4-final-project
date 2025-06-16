@@ -7,8 +7,7 @@ passport.use(
     {
       clientID: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
-      callbackURL:
-        'https://cse341-team4-final-project-nh1g.onrender.com/auth/github/callback', //change to server before deployment
+      callbackURL: 'http://localhost:3000/auth/github/callback', //change to server before deployment
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
