@@ -1,13 +1,12 @@
 const passport = require('passport');
 const GitHubStrategy = require('passport-github2').Strategy;
 const User = require('../models/User'); // must have "user" file
+const appConfig = require('../config'); // must have "appConfig" file
 
 passport.use(
   new GitHubStrategy(
     {
-      clientID: process.env.GITHUB_CLIENT_ID,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET,
-      callbackURL: 'http://localhost:3000/auth/github/callback', //change to server before deployment
+      ...appConfig.github, //change to server before deployment
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
