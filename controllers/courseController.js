@@ -36,7 +36,7 @@ const getSingle = async (req, res) => {
   }
 };
 
-// CREATE a new course
+// Create Course
 const createCourse = async (req, res) => {
   try {
     const course = new Course(req.body);
