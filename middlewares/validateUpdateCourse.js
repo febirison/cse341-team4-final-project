@@ -5,7 +5,6 @@ const validateUpdateCourse = (req, res, next) => {
     title: 'string',
     description: 'string',
     instructor: 'string',
-    rooms: 'string',
     'students.*': 'string',
   };
 
@@ -17,7 +16,7 @@ const validateUpdateCourse = (req, res, next) => {
   }
   const messages = {
     'instructor.string': 'Instructor must be a valid ID string.',
-    'rooms.string': 'Room must be a valid ID string.',
+    'students.*.string': 'Each student ID must be a valid string.',
   };
 
   validator(req.body, rules, messages, (err, status) => {

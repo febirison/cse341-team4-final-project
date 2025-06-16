@@ -1,23 +1,26 @@
 [
   {
     "title": "Intro to Programming",
+    "courseCode": "CS101",
+    "credits": 2,
     "description": "Learn JavaScript fundamentals",
     "instructor": "664b8df7254bd4e3f9a7f9b30",
-    "students": ["664b8df7254bd4e3f9a7f9b31", "664b8df7254bd4e3f9a7f9b32"],
-    "rooms": "664b8df7254bd4e3f9a7f9b33"
+    "students": ["664b8df7254bd4e3f9a7f9b31", "664b8df7254bd4e3f9a7f9b32"]
   },
   {
     "title": "Web Development Basics",
+    "courseCode": "WDD101",
+    "credits": 3,
     "description": "HTML, CSS, and intro to web frameworks",
     "instructor": "664b8df7254bd4e3f9a7f9b34",
-    "students": ["664b8df7254bd4e3f9a7f9b31"],
-    "rooms": "664b8df7254bd4e3f9a7f9b34"
+    "students": ["664b8df7254bd4e3f9a7f9b31"]
   },
   {
     "title": "Data Structures",
+    "courseCode": "D101",
+    "credits": 3,
     "description": "In-depth study of algorithms and data handling",
     "instructor": "664b8df7254bd4e3f9a7f9b35",
-    "students": [],
-    "rooms": "664b8df7254bd4e3f9a7f9b35"
+    "students": []
   }
 ]

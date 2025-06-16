@@ -28,17 +28,19 @@ const getSingle = async (req, res) => {
   }
 };
 
-// CREATE a new student
+/// CREATE a new student
 const createStudent = async (req, res) => {
   try {
     const student = new Student(req.body);
     await student.save();
     res.status(201).json({
       message: 'Student created successfully.',
-      studentId: student._id,
+      student,
     });
-  } catch {
-    res.status(500).json({ error: 'Failed to create student.' });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: 'Failed to create student.', details: error.message });
   }
 };
 
@@ -56,7 +58,10 @@ const updateStudent = async (req, res) => {
     });
 
     if (result) {
-      res.status(200).json({ message: 'Student updated successfully.' });
+      res.status(200).json({
+        message: 'Student updated successfully.',
+        student: result, // return updated Student.
+      });
     } else {
       res.status(404).json({ message: 'Student not found.' });
     }
@@ -75,12 +80,14 @@ const deleteStudent = async (req, res) => {
   try {
     const result = await Student.findByIdAndDelete(req.params.id);
     if (result) {
-      res.status(204).send();
+      res.status(200).json({ message: 'Student deleted successfully.' }); // optional improvement
     } else {
       res.status(404).json({ message: 'Student not found' });
     }
-  } catch {
-    res.status(400).json({ error: 'Invalid ID format' });
+  } catch (error) {
+    res
+      .status(400)
+      .json({ error: 'Invalid ID format', details: error.message });
   }
 };
 

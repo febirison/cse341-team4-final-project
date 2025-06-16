@@ -43,12 +43,12 @@ const createCourse = async (req, res) => {
     await course.save();
     res.status(201).json({
       message: 'Course created successfully.',
-      courseId: course._id,
+      course, // return object as the grader comment.
     });
-  } catch (err) { // Capture the error object here
-    console.error('Error creating course:', err); // THIS IS THE CRUCIAL LINE for debugging
-
-    res.status(500).json({ error: 'Failed to create course. Check server logs for details.' });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: 'Failed to create course.', details: error.message });
   }
 };
 
@@ -66,7 +66,10 @@ const updateCourse = async (req, res) => {
     });
 
     if (result) {
-      res.status(200).json({ message: 'Course updated successfully.' });
+      res.status(200).json({
+        message: 'Course updated successfully.',
+        course: result, // return object as the grader comment.
+      });
     } else {
       res.status(404).json({ message: 'Course not found.' });
     }
