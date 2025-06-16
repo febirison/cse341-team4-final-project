@@ -5,12 +5,6 @@
     "description": "This is an API server for the Campus Coordinator API project.\n\n## Project Information\nDeveloped by **Team 4** for *CSE341* at BYU Pathway.\n\n---\n\n## Development Team\n* **Anderson Okai**\n* **Jorge Luis Sosa Nunez**\n* **Andrew Omoniyi Mogbeyiromore**\n* **Erwin Jared Larios**\n* **Amornrat Dizon Howard**\n* **David da Rocha Fernandes**\n* **Ivan Sembatya**\n\n---\n\n*API Version 1.0.0 - June 2025*",
     "version": "1.0.0"
   },
-  "servers": [
-    {
-      "url": "http://localhost:3000/",
-      "description": "Production server"
-    }
-  ],
   "tags": [
     {
       "name": "Students",
@@ -659,7 +653,7 @@
       }
     }
   },
-    
+
   "components": {
     "schemas": {
       "Student": {
@@ -785,7 +779,13 @@
             "example": 3
           }
         },
-        "required": ["title", "courseCode", "description", "instructor", "credits"]
+        "required": [
+          "title",
+          "courseCode",
+          "description",
+          "instructor",
+          "credits"
+        ]
       },
 
       "Club": {
