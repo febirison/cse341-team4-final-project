@@ -43,7 +43,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
  *************************/
 app.use(
   cors({
-    origin: 'http://localhost:3000', // put specific URL ex. http://localhost:3000 https://cse341-team4-final-project-nh1g.onrender.com
+    origin: 'https://cse341-team4-final-project-nh1g.onrender.com', // put specific URL ex. http://localhost:3000 https://cse341-team4-final-project-nh1g.onrender.com
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
